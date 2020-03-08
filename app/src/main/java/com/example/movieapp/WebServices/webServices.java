@@ -24,5 +24,11 @@ public interface webServices {
     Single<MoviesResponse> GetPlayingNowMovies(@Query("api_key")String apikey , @Query("language")String language,@Query("page")int page);
     @GET("movie/upcoming")
     Single<MoviesResponse> GetUpComingMovies(@Query("api_key")String apikey , @Query("language")String language,@Query("page")int page);
+    @GET("search/multi")
+    Single<MoviesResponse> GetMultiSearch(@Query("api_key")String apikey , @Query("language")String language,@Query("query")String query,@Query("page")int page,@Query("include_adult")boolean include_adult);
+    @GET("person/{person_id}")
+    Single<MoviesResponse> GetActorsDetails(@Query("api_key")String apikey , @Query("language")String language);
+    @GET("person/{person_id}/movie_credits")
+    Single<MoviesResponse> GetMoviesOfActors(@Query("api_key")String apikey , @Query("language")String language);
 
 }
