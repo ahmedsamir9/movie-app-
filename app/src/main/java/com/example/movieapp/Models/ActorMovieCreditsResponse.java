@@ -7,7 +7,7 @@ import java.util.List;
 public class ActorMovieCreditsResponse{
 
 	@SerializedName("cast")
-	private List<CastItem> cast;
+	private List<CastActorItem> cast;
 
 	@SerializedName("id")
 	private int id;
@@ -15,11 +15,11 @@ public class ActorMovieCreditsResponse{
 	@SerializedName("crew")
 	private List<CrewItem> crew;
 
-	public void setCast(List<CastItem> cast){
+	public void setCast(List<CastActorItem> cast){
 		this.cast = cast;
 	}
 
-	public List<CastItem> getCast(){
+	public List<CastActorItem> getCast(){
 		return cast;
 	}
 

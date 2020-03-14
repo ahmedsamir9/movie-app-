@@ -2,206 +2,109 @@ package com.example.movieapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 public class CastItem{
 
-	@SerializedName("overview")
-	private String overview;
+    @SerializedName("cast_id")
+    private int castId;
 
-	@SerializedName("original_language")
-	private String originalLanguage;
+    @SerializedName("character")
+    private String character;
 
-	@SerializedName("original_title")
-	private String originalTitle;
+    @SerializedName("gender")
+    private int gender;
 
-	@SerializedName("video")
-	private boolean video;
+    @SerializedName("credit_id")
+    private String creditId;
 
-	@SerializedName("title")
-	private String title;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
+    @SerializedName("profile_path")
+    private String profilePath;
 
-	@SerializedName("poster_path")
-	private String posterPath;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("backdrop_path")
-	private String backdropPath;
+    @SerializedName("order")
+    private int order;
 
-	@SerializedName("character")
-	private String character;
+    public void setCastId(int castId){
+        this.castId = castId;
+    }
 
-	@SerializedName("credit_id")
-	private String creditId;
+    public int getCastId(){
+        return castId;
+    }
 
-	@SerializedName("release_date")
-	private String releaseDate;
+    public void setCharacter(String character){
+        this.character = character;
+    }
 
-	@SerializedName("vote_average")
-	private double voteAverage;
+    public String getCharacter(){
+        return character;
+    }
 
-	@SerializedName("popularity")
-	private double popularity;
+    public void setGender(int gender){
+        this.gender = gender;
+    }
 
-	@SerializedName("id")
-	private int id;
+    public int getGender(){
+        return gender;
+    }
 
-	@SerializedName("adult")
-	private boolean adult;
+    public void setCreditId(String creditId){
+        this.creditId = creditId;
+    }
 
-	@SerializedName("vote_count")
-	private int voteCount;
+    public String getCreditId(){
+        return creditId;
+    }
 
-	public void setOverview(String overview){
-		this.overview = overview;
-	}
+    public void setName(String name){
+        this.name = name;
+    }
 
-	public String getOverview(){
-		return overview;
-	}
+    public String getName(){
+        return name;
+    }
 
-	public void setOriginalLanguage(String originalLanguage){
-		this.originalLanguage = originalLanguage;
-	}
+    public void setProfilePath(String profilePath){
+        this.profilePath = profilePath;
+    }
 
-	public String getOriginalLanguage(){
-		return originalLanguage;
-	}
+    public String getProfilePath(){
+        return profilePath;
+    }
 
-	public void setOriginalTitle(String originalTitle){
-		this.originalTitle = originalTitle;
-	}
+    public void setId(int id){
+        this.id = id;
+    }
 
-	public String getOriginalTitle(){
-		return originalTitle;
-	}
+    public int getId(){
+        return id;
+    }
 
-	public void setVideo(boolean video){
-		this.video = video;
-	}
+    public void setOrder(int order){
+        this.order = order;
+    }
 
-	public boolean isVideo(){
-		return video;
-	}
+    public int getOrder(){
+        return order;
+    }
 
-	public void setTitle(String title){
-		this.title = title;
-	}
-
-	public String getTitle(){
-		return title;
-	}
-
-	public void setGenreIds(List<Integer> genreIds){
-		this.genreIds = genreIds;
-	}
-
-	public List<Integer> getGenreIds(){
-		return genreIds;
-	}
-
-	public void setPosterPath(String posterPath){
-		this.posterPath = posterPath;
-	}
-
-	public String getPosterPath(){
-		return posterPath;
-	}
-
-	public void setBackdropPath(String backdropPath){
-		this.backdropPath = backdropPath;
-	}
-
-	public String getBackdropPath(){
-		return backdropPath;
-	}
-
-	public void setCharacter(String character){
-		this.character = character;
-	}
-
-	public String getCharacter(){
-		return character;
-	}
-
-	public void setCreditId(String creditId){
-		this.creditId = creditId;
-	}
-
-	public String getCreditId(){
-		return creditId;
-	}
-
-	public void setReleaseDate(String releaseDate){
-		this.releaseDate = releaseDate;
-	}
-
-	public String getReleaseDate(){
-		return releaseDate;
-	}
-
-	public void setVoteAverage(double voteAverage){
-		this.voteAverage = voteAverage;
-	}
-
-	public double getVoteAverage(){
-		return voteAverage;
-	}
-
-	public void setPopularity(double popularity){
-		this.popularity = popularity;
-	}
-
-	public double getPopularity(){
-		return popularity;
-	}
-
-	public void setId(int id){
-		this.id = id;
-	}
-
-	public int getId(){
-		return id;
-	}
-
-	public void setAdult(boolean adult){
-		this.adult = adult;
-	}
-
-	public boolean isAdult(){
-		return adult;
-	}
-
-	public void setVoteCount(int voteCount){
-		this.voteCount = voteCount;
-	}
-
-	public int getVoteCount(){
-		return voteCount;
-	}
-
-	@Override
- 	public String toString(){
-		return 
-			"CastItem{" + 
-			"overview = '" + overview + '\'' + 
-			",original_language = '" + originalLanguage + '\'' + 
-			",original_title = '" + originalTitle + '\'' + 
-			",video = '" + video + '\'' + 
-			",title = '" + title + '\'' + 
-			",genre_ids = '" + genreIds + '\'' + 
-			",poster_path = '" + posterPath + '\'' + 
-			",backdrop_path = '" + backdropPath + '\'' + 
-			",character = '" + character + '\'' + 
-			",credit_id = '" + creditId + '\'' + 
-			",release_date = '" + releaseDate + '\'' + 
-			",vote_average = '" + voteAverage + '\'' + 
-			",popularity = '" + popularity + '\'' + 
-			",id = '" + id + '\'' + 
-			",adult = '" + adult + '\'' + 
-			",vote_count = '" + voteCount + '\'' + 
-			"}";
-		}
+    @Override
+    public String toString(){
+        return
+                "CastItem{" +
+                        "cast_id = '" + castId + '\'' +
+                        ",character = '" + character + '\'' +
+                        ",gender = '" + gender + '\'' +
+                        ",credit_id = '" + creditId + '\'' +
+                        ",name = '" + name + '\'' +
+                        ",profile_path = '" + profilePath + '\'' +
+                        ",id = '" + id + '\'' +
+                        ",order = '" + order + '\'' +
+                        "}";
+    }
 }
