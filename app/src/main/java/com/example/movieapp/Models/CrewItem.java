@@ -2,45 +2,20 @@ package com.example.movieapp.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 public class CrewItem{
 
-	@SerializedName("overview")
-	private String overview;
-
-	@SerializedName("original_language")
-	private String originalLanguage;
-
-	@SerializedName("original_title")
-	private String originalTitle;
-
-	@SerializedName("video")
-	private boolean video;
-
-	@SerializedName("title")
-	private String title;
-
-	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
-
-	@SerializedName("poster_path")
-	private String posterPath;
-
-	@SerializedName("backdrop_path")
-	private String backdropPath;
-
-	@SerializedName("release_date")
-	private String releaseDate;
+	@SerializedName("gender")
+	private int gender;
 
 	@SerializedName("credit_id")
 	private String creditId;
 
-	@SerializedName("popularity")
-	private double popularity;
+	@SerializedName("name")
+	private String name;
 
-	@SerializedName("vote_average")
-	private double voteAverage;
+	@SerializedName("profile_path")
+	private String profilePath;
 
 	@SerializedName("id")
 	private int id;
@@ -51,82 +26,12 @@ public class CrewItem{
 	@SerializedName("job")
 	private String job;
 
-	@SerializedName("adult")
-	private boolean adult;
-
-	@SerializedName("vote_count")
-	private int voteCount;
-
-	public void setOverview(String overview){
-		this.overview = overview;
+	public void setGender(int gender){
+		this.gender = gender;
 	}
 
-	public String getOverview(){
-		return overview;
-	}
-
-	public void setOriginalLanguage(String originalLanguage){
-		this.originalLanguage = originalLanguage;
-	}
-
-	public String getOriginalLanguage(){
-		return originalLanguage;
-	}
-
-	public void setOriginalTitle(String originalTitle){
-		this.originalTitle = originalTitle;
-	}
-
-	public String getOriginalTitle(){
-		return originalTitle;
-	}
-
-	public void setVideo(boolean video){
-		this.video = video;
-	}
-
-	public boolean isVideo(){
-		return video;
-	}
-
-	public void setTitle(String title){
-		this.title = title;
-	}
-
-	public String getTitle(){
-		return title;
-	}
-
-	public void setGenreIds(List<Integer> genreIds){
-		this.genreIds = genreIds;
-	}
-
-	public List<Integer> getGenreIds(){
-		return genreIds;
-	}
-
-	public void setPosterPath(String posterPath){
-		this.posterPath = posterPath;
-	}
-
-	public String getPosterPath(){
-		return posterPath;
-	}
-
-	public void setBackdropPath(String backdropPath){
-		this.backdropPath = backdropPath;
-	}
-
-	public String getBackdropPath(){
-		return backdropPath;
-	}
-
-	public void setReleaseDate(String releaseDate){
-		this.releaseDate = releaseDate;
-	}
-
-	public String getReleaseDate(){
-		return releaseDate;
+	public int getGender(){
+		return gender;
 	}
 
 	public void setCreditId(String creditId){
@@ -137,20 +42,20 @@ public class CrewItem{
 		return creditId;
 	}
 
-	public void setPopularity(double popularity){
-		this.popularity = popularity;
+	public void setName(String name){
+		this.name = name;
 	}
 
-	public double getPopularity(){
-		return popularity;
+	public String getName(){
+		return name;
 	}
 
-	public void setVoteAverage(double voteAverage){
-		this.voteAverage = voteAverage;
+	public void setProfilePath(String profilePath){
+		this.profilePath = profilePath;
 	}
 
-	public double getVoteAverage(){
-		return voteAverage;
+	public String getProfilePath(){
+		return profilePath;
 	}
 
 	public void setId(int id){
@@ -177,43 +82,17 @@ public class CrewItem{
 		return job;
 	}
 
-	public void setAdult(boolean adult){
-		this.adult = adult;
-	}
-
-	public boolean isAdult(){
-		return adult;
-	}
-
-	public void setVoteCount(int voteCount){
-		this.voteCount = voteCount;
-	}
-
-	public int getVoteCount(){
-		return voteCount;
-	}
-
 	@Override
  	public String toString(){
 		return 
 			"CrewItem{" + 
-			"overview = '" + overview + '\'' + 
-			",original_language = '" + originalLanguage + '\'' + 
-			",original_title = '" + originalTitle + '\'' + 
-			",video = '" + video + '\'' + 
-			",title = '" + title + '\'' + 
-			",genre_ids = '" + genreIds + '\'' + 
-			",poster_path = '" + posterPath + '\'' + 
-			",backdrop_path = '" + backdropPath + '\'' + 
-			",release_date = '" + releaseDate + '\'' + 
+			"gender = '" + gender + '\'' + 
 			",credit_id = '" + creditId + '\'' + 
-			",popularity = '" + popularity + '\'' + 
-			",vote_average = '" + voteAverage + '\'' + 
+			",name = '" + name + '\'' + 
+			",profile_path = '" + profilePath + '\'' + 
 			",id = '" + id + '\'' + 
 			",department = '" + department + '\'' + 
 			",job = '" + job + '\'' + 
-			",adult = '" + adult + '\'' + 
-			",vote_count = '" + voteCount + '\'' + 
 			"}";
 		}
 }

@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class CastItem{
-
     @SerializedName("cast_id")
     private int castId;
 
