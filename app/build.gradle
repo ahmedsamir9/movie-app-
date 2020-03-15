@@ -60,4 +60,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     //circular ImageView
     implementation 'com.jackandphantom.android:circularimageview:1.2.0'
+    //image slider
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
 }
