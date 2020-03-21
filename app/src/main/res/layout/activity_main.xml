@@ -25,21 +25,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="54dp"
+                android:layout_marginTop="6dp"
                 android:text="top rated"
                 android:fontFamily="monospace"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_top_rated"
+            <com.github.islamkhsh.CardSliderViewPager
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rv_top_rated"
+                android:layout_marginTop="24dp"
+                app:cardSlider_smallScaleFactor="0.9"
+                app:auto_slide_time="3"
+                app:cardSlider_otherPagesWidth="20dp"
+                app:cardSlider_pageMargin="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_top_rated" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_top_rated"/>
+
 
             <TextView
                 android:id="@+id/tv_popular"

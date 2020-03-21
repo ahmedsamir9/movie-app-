@@ -1,20 +1,19 @@
 package com.example.movieapp.WebServices;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.Models.MoviesResponse;
 import com.example.movieapp.Models.ResultsMovieItem;
-import com.example.movieapp.WebServices.ApiManger;
 
 import java.util.List;
+
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
 import static com.example.movieapp.Utiles.CONTANTS.APIKEY;
 import static com.example.movieapp.Utiles.CONTANTS.LANGUAGE;
 
@@ -22,7 +21,6 @@ public class MoviesViewModel extends ViewModel {
     private MutableLiveData<List<ResultsMovieItem>> popularMoviesMutableLiveData=new MutableLiveData<>();
     private MutableLiveData<List<ResultsMovieItem>> playingNowMoviesMutableLiveData=new MutableLiveData<>();
     private MutableLiveData<List<ResultsMovieItem>> topRatedMoviesMutableLiveData=new MutableLiveData<>();
-
     public MutableLiveData<List<ResultsMovieItem>> getPopularMoviesMutableLiveData() {
         return popularMoviesMutableLiveData;
     }

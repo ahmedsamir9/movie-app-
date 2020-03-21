@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.Models.ResultsMovieItem;
-import com.example.movieapp.Models.showedItem;
 import com.example.movieapp.R;
 import com.jackandphantom.circularimageview.RoundedImage;
 
@@ -22,7 +21,6 @@ public class ScrollerAdapter extends RecyclerView.Adapter<ScrollerAdapter.ViewHo
     private List<ResultsMovieItem> data;
     private ReachEndListner reachEndListner;
     private DetailedMovieListner movieListner;
-
     public ScrollerAdapter(List<ResultsMovieItem> data) {
         this.data = data;
     }
@@ -36,22 +34,22 @@ public class ScrollerAdapter extends RecyclerView.Adapter<ScrollerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        ResultsMovieItem item = data.get(position);
-        if (position == data.size() - 1) {
+//        ResultsMovieItem item = data.get(position);
+//        if (position == data.size() - 1){
+//
+//           reachEndListner.reachEnd();
+//        }
 
-            reachEndListner.reachEnd();
-        }
-
-        Glide.with(holder.itemView)
-                .load(IMAGEBASEURL+item.getPosterPath())
+        Glide.with(holder.itemView.getContext())
+                .load(IMAGEBASEURL+data.get(position).getBackdropPath())
                 .into(holder.MovieImage);
-        holder.Moviename.setText(item.getTitle());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                movieListner.onclick(position);
-            }
-        });
+        holder.Moviename.setText(data.get(position).getTitle());
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                movieListner.onclick(position);
+//            }
+//        });
     }
 
     @Override
@@ -67,23 +65,20 @@ public class ScrollerAdapter extends RecyclerView.Adapter<ScrollerAdapter.ViewHo
         this.movieListner = movieListner;
     }
 
-    public interface ReachEndListner {
+    private interface ReachEndListner {
         public void reachEnd();
-    }
-
-    public interface DetailedMovieListner {
+}
+    private interface DetailedMovieListner{
         public void onclick(int pos);
     }
-
     class ViewHolder extends RecyclerView.ViewHolder {
 
-         RoundedImage MovieImage;
-         TextView Moviename;
-
+        private RoundedImage MovieImage;
+        private TextView Moviename;
         public ViewHolder(View itemView) {
             super(itemView);
-            MovieImage = itemView.findViewById(R.id.popular_movie_cover);
-            Moviename = itemView.findViewById(R.id.popular_movie_name);
+            MovieImage =  itemView.findViewById(R.id.popular_movie_cover);
+
         }
     }
 }

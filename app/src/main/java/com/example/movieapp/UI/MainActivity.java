@@ -1,14 +1,13 @@
 package com.example.movieapp.UI;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.example.movieapp.Adapters.MoviesPlayingNowAdapter;
 import com.example.movieapp.Adapters.MoviesPopularAdapter;
@@ -18,16 +17,18 @@ import com.example.movieapp.Adapters.ScrollerAdapter;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
 import com.example.movieapp.WebServices.MoviesViewModel;
+import com.github.islamkhsh.CardSliderViewPager;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     MoviesViewModel movieViewModel;
-    RecyclerView rv_popular, rv_up_coming, rv_top_rated, rv_playing_now;
+    RecyclerView rv_popular, rv_up_coming,  rv_playing_now;
     MoviesPopularAdapter popularAdapter;
     MoviesPlayingNowAdapter playingNowAdapter;
     MoviesTopRatedAdapter topRatedAdapter;
     MoviesUpComingAdapter upComingAdapter;
+    CardSliderViewPager cardSliderViewPager;
     ScrollerAdapter scrollerAdapter;
     MutableLiveData<List<ResultsMovieItem>> mutableLiveData;
     @Override
@@ -36,17 +37,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         getLiveData();
-
     }
 
     private void initViews() {
         rv_popular = findViewById(R.id.rv_popular);
         rv_playing_now = findViewById(R.id.rv_playing_now);
-        rv_top_rated = findViewById(R.id.rv_top_rated);
+        cardSliderViewPager = findViewById(R.id.rv_top_rated);
         rv_up_coming = findViewById(R.id.rv_up_coming);
         initRecyclerView(rv_popular);
         initRecyclerView(rv_playing_now);
-        initRecyclerView(rv_top_rated);
         initRecyclerView(rv_up_coming);
     }
 
@@ -86,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 rv_up_coming.setAdapter(upComingAdapter);
                 break;
             case "Top Rated":
-                scrollerAdapter = new ScrollerAdapter(resultsMovieItems);
-                rv_top_rated.setAdapter(scrollerAdapter);
+                topRatedAdapter = new MoviesTopRatedAdapter(resultsMovieItems);
+                cardSliderViewPager.setAdapter(topRatedAdapter);
                 break;
             case "Playing now":
                 playingNowAdapter = new MoviesPlayingNowAdapter(resultsMovieItems);
@@ -96,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             case "Popular":
                 popularAdapter = new MoviesPopularAdapter(resultsMovieItems);
                 rv_popular.setAdapter(popularAdapter);
+
                 break;
         }
 
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "Top Rated":
                 mutableLiveData=movieViewModel.getTopRatedMoviesMutableLiveData();
+                observeData(data);
                 break;
             case "Playing now":
                 mutableLiveData=movieViewModel.getPlayingNowMoviesMutableLiveData();
