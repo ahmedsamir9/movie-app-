@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.movieapp.Models.CastItem;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
 import com.example.movieapp.UI.MovieDetails;
@@ -21,37 +22,39 @@ import com.jackandphantom.circularimageview.RoundedImage;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static com.example.movieapp.Utiles.CONTANTS.IMAGEBASEURL;
 
-public class MoviesPopularAdapter extends RecyclerView.Adapter<MoviesPopularAdapter.ViewHolder> {
+public class ActorsMoveAdapter extends RecyclerView.Adapter<ActorsMoveAdapter.ViewHolder> {
 
-    private List<ResultsMovieItem> data;
+    private List<CastItem> data;
     private Context context;
-    public MoviesPopularAdapter(List<ResultsMovieItem> data, Context context) {
+    public ActorsMoveAdapter(List<CastItem> data,Context context) {
         this.data = data;
-        this.context = context;
+        this.context=context;
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.movie_view_card, parent, false);
+        View v = inflater.inflate(R.layout.actor_view_card, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        ResultsMovieItem item = data.get(position);
-        holder.tv_title.setText(item.getTitle());
-        holder.tv_desc.setText(String.valueOf(item.getVoteAverage()));
+        CastItem item = data.get(position);
+        holder.tv_actor_card.setText(item.getName());
         Glide.with(holder.itemView)
-                .load(IMAGEBASEURL+item.getPosterPath())
-                .into(holder.img_movie);
-        holder.img_movie.setOnClickListener(new View.OnClickListener() {
+                .load(IMAGEBASEURL+item.getProfilePath())
+                .into(holder.img_actor_card);
+        holder.img_actor_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(context, MovieDetails.class);
+                final Intent intent = new Intent(context, MovieDetails.class);//your activity
                 intent.putExtra("id",item.getId());
                 context.startActivity(intent);
             }
@@ -65,13 +68,12 @@ public class MoviesPopularAdapter extends RecyclerView.Adapter<MoviesPopularAdap
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_title,tv_desc;
-        RoundedImage img_movie;
+        TextView tv_actor_card;
+        CircleImage img_actor_card;
         ViewHolder(View itemView) {
             super(itemView);
-            img_movie=itemView.findViewById(R.id.img_movie_card);
-            tv_title=itemView.findViewById(R.id.tv_title);
-            tv_desc=itemView.findViewById(R.id.tv_desc);
+            tv_actor_card=itemView.findViewById(R.id.tv_actor_card);
+            img_actor_card=itemView.findViewById(R.id.img_actor_card);
 
         }
     }

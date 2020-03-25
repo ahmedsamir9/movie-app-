@@ -1,16 +1,26 @@
 package com.example.movieapp.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ProductionCompaniesItem{
-	private Object logoPath;
+
+	@SerializedName("logo_path")
+	private String logoPath;
+
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("id")
 	private int id;
+
+	@SerializedName("origin_country")
 	private String originCountry;
 
-	public void setLogoPath(Object logoPath){
+	public void setLogoPath(String logoPath){
 		this.logoPath = logoPath;
 	}
 
-	public Object getLogoPath(){
+	public String getLogoPath(){
 		return logoPath;
 	}
 

@@ -1,7 +1,13 @@
 package com.example.movieapp.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GenresItem{
+
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("id")
 	private int id;
 
 	public void setName(String name){

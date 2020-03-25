@@ -43,7 +43,8 @@ public class ScrollerAdapter extends RecyclerView.Adapter<ScrollerAdapter.ViewHo
         Glide.with(holder.itemView.getContext())
                 .load(IMAGEBASEURL+data.get(position).getBackdropPath())
                 .into(holder.MovieImage);
-        holder.Moviename.setText(data.get(position).getTitle());
+
+
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -74,7 +75,6 @@ public class ScrollerAdapter extends RecyclerView.Adapter<ScrollerAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RoundedImage MovieImage;
-        private TextView Moviename;
         public ViewHolder(View itemView) {
             super(itemView);
             MovieImage =  itemView.findViewById(R.id.popular_movie_cover);

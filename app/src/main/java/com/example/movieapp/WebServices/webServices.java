@@ -13,11 +13,11 @@ import retrofit2.http.Query;
 
 public interface webServices {
     @GET("movie/{movie_id}")
-    Single<MovieDetailsResponse> GetMovieDetails(@Path("movie_id")String movie_id, @Query("api_key")String apikey , @Query("language")String language);
+    Single<MovieDetailsResponse> GetMovieDetails(@Path("movie_id")int movie_id, @Query("api_key")String apikey , @Query("language")String language);
     @GET("movie/{movie_id}/videos")
-    Single<MovieVideoResponse> GetMovieVides(@Path("movie_id")String movie_id,@Query("api_key")String apikey , @Query("language")String language);
+    Single<MovieVideoResponse> GetMovieVides(@Path("movie_id")int movie_id,@Query("api_key")String apikey , @Query("language")String language);
     @GET("movie/{movie_id}/credits")
-    Single<MovieCrewResponse> GetMovieCast(@Path("movie_id")String movie_id,@Query("api_key")String apikey , @Query("language")String language);
+    Single<MovieCrewResponse> GetMovieCast(@Path("movie_id")int movie_id,@Query("api_key")String apikey , @Query("language")String language);
     @GET("movie/top_rated")
     Single<MoviesResponse> GetTopRatedMovies(@Query("api_key")String apikey , @Query("language")String language,@Query("page")int page);
     @GET("movie/popular")
