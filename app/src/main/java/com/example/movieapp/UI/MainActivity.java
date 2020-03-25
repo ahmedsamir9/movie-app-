@@ -13,12 +13,10 @@ import com.example.movieapp.Adapters.MoviesPlayingNowAdapter;
 import com.example.movieapp.Adapters.MoviesPopularAdapter;
 import com.example.movieapp.Adapters.MoviesTopRatedAdapter;
 import com.example.movieapp.Adapters.MoviesUpComingAdapter;
-import com.example.movieapp.Adapters.ScrollerAdapter;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
 import com.example.movieapp.WebServices.MoviesViewModel;
 import com.github.islamkhsh.CardSliderViewPager;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     MoviesTopRatedAdapter topRatedAdapter;
     MoviesUpComingAdapter upComingAdapter;
     CardSliderViewPager cardSliderViewPager;
-    ScrollerAdapter scrollerAdapter;
     MutableLiveData<List<ResultsMovieItem>> mutableLiveData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,19 +78,19 @@ public class MainActivity extends AppCompatActivity {
     private void setAdapterData(String data, List<ResultsMovieItem> resultsMovieItems) {
         switch (data) {
             case "Up Coming":
-                upComingAdapter = new MoviesUpComingAdapter(resultsMovieItems);
+                upComingAdapter = new MoviesUpComingAdapter(resultsMovieItems,MainActivity.this);
                 rv_up_coming.setAdapter(upComingAdapter);
                 break;
             case "Top Rated":
-                topRatedAdapter = new MoviesTopRatedAdapter(resultsMovieItems);
+                topRatedAdapter = new MoviesTopRatedAdapter(resultsMovieItems,MainActivity.this);
                 cardSliderViewPager.setAdapter(topRatedAdapter);
                 break;
             case "Playing now":
-                playingNowAdapter = new MoviesPlayingNowAdapter(resultsMovieItems);
+                playingNowAdapter = new MoviesPlayingNowAdapter(resultsMovieItems,MainActivity.this);
                 rv_playing_now.setAdapter(playingNowAdapter);
                 break;
             case "Popular":
-                popularAdapter = new MoviesPopularAdapter(resultsMovieItems);
+                popularAdapter = new MoviesPopularAdapter(resultsMovieItems,MainActivity.this);
                 rv_popular.setAdapter(popularAdapter);
 
                 break;

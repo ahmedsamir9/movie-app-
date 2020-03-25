@@ -1,5 +1,7 @@
 package com.example.movieapp.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
+import com.example.movieapp.UI.MovieDetails;
 import com.jackandphantom.circularimageview.CircleImage;
 import com.jackandphantom.circularimageview.RoundedImage;
 
@@ -22,11 +25,12 @@ import static com.example.movieapp.Utiles.CONTANTS.IMAGEBASEURL;
 public class MoviesUpComingAdapter extends RecyclerView.Adapter<MoviesUpComingAdapter.ViewHolder> {
 
     private List<ResultsMovieItem> data;
+    private Context context;
 
-    public MoviesUpComingAdapter(List<ResultsMovieItem> data) {
+    public MoviesUpComingAdapter(List<ResultsMovieItem> data, Context context) {
         this.data = data;
+        this.context = context;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -43,6 +47,15 @@ public class MoviesUpComingAdapter extends RecyclerView.Adapter<MoviesUpComingAd
         Glide.with(holder.itemView)
                 .load(IMAGEBASEURL+item.getPosterPath())
                 .into(holder.img_movie);
+        holder.img_movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(context, MovieDetails.class);
+                intent.putExtra("id",item.getId());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

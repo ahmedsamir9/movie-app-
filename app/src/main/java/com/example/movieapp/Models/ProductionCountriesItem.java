@@ -1,7 +1,13 @@
 package com.example.movieapp.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ProductionCountriesItem{
+
+	@SerializedName("iso_3166_1")
 	private String iso31661;
+
+	@SerializedName("name")
 	private String name;
 
 	public void setIso31661(String iso31661){

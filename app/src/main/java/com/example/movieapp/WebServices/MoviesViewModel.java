@@ -5,6 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.movieapp.Models.CastItem;
+import com.example.movieapp.Models.MovieCrewResponse;
+import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.Models.MoviesResponse;
 import com.example.movieapp.Models.ResultsMovieItem;
 
@@ -21,6 +24,26 @@ public class MoviesViewModel extends ViewModel {
     private MutableLiveData<List<ResultsMovieItem>> popularMoviesMutableLiveData=new MutableLiveData<>();
     private MutableLiveData<List<ResultsMovieItem>> playingNowMoviesMutableLiveData=new MutableLiveData<>();
     private MutableLiveData<List<ResultsMovieItem>> topRatedMoviesMutableLiveData=new MutableLiveData<>();
+    private MutableLiveData<List<ResultsMovieItem>> upComingMoviesMutableLiveData=new MutableLiveData<>();
+    private MutableLiveData <MovieDetailsResponse> movieDetailsResponseMutableLiveData=new MutableLiveData<>();
+    private MutableLiveData<List<CastItem>> actorsMovieMutableLiveData=new MutableLiveData<>();
+
+
+    public MutableLiveData<List<CastItem>> getActorsMovieMutableLiveData() {
+        return actorsMovieMutableLiveData;
+    }
+
+    public void setActorsMovieMutableLiveData(MutableLiveData<List<CastItem>> actorsMovieMutableLiveData) {
+        this.actorsMovieMutableLiveData = actorsMovieMutableLiveData;
+    }
+    public MutableLiveData<MovieDetailsResponse> getMovieDetailsResponseMutableLiveData() {
+        return movieDetailsResponseMutableLiveData;
+    }
+
+    public void setMovieDetailsResponseMutableLiveData(MutableLiveData<MovieDetailsResponse> movieDetailsResponseMutableLiveData) {
+        this.movieDetailsResponseMutableLiveData = movieDetailsResponseMutableLiveData;
+    }
+
     public MutableLiveData<List<ResultsMovieItem>> getPopularMoviesMutableLiveData() {
         return popularMoviesMutableLiveData;
     }
@@ -53,8 +76,6 @@ public class MoviesViewModel extends ViewModel {
         this.upComingMoviesMutableLiveData = upComingMoviesMutableLiveData;
     }
 
-    private MutableLiveData<List<ResultsMovieItem>> upComingMoviesMutableLiveData=new MutableLiveData<>();
-
     public void getPopularMovies(int index){
         Single<MoviesResponse> observable = ApiManger.getApis().GetPopularMovies(APIKEY,LANGUAGE,index)
                 .subscribeOn(Schedulers.io())
@@ -80,4 +101,18 @@ public class MoviesViewModel extends ViewModel {
         observable.subscribe(o->topRatedMoviesMutableLiveData.setValue(o.getResults()),e-> Log.d("MoviesViewModel","here :"+e));
     }
 
+    public void getMovieDetails(int index){
+        Single<MovieDetailsResponse> observable = ApiManger.getApis().GetMovieDetails(index,APIKEY,LANGUAGE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> movieDetailsResponseMutableLiveData.setValue(o), e-> Log.d("MoviesDetailsViewModel","here :"+e));
+
+    }
+
+    public void getActorsMovie(int index){
+        Single<MovieCrewResponse> observable = ApiManger.getApis().GetMovieCast(index,APIKEY,LANGUAGE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> actorsMovieMutableLiveData.setValue(o.getCast()), e-> Log.d("MoviesDetailsViewModel","here :"+e));
+    }
 }

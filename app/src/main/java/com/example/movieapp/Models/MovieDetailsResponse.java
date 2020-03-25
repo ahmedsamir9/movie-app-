@@ -1,32 +1,83 @@
 package com.example.movieapp.Models;
 
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class MovieDetailsResponse{
+
+	@SerializedName("original_language")
 	private String originalLanguage;
+
+	@SerializedName("imdb_id")
 	private String imdbId;
+
+	@SerializedName("video")
 	private boolean video;
+
+	@SerializedName("title")
 	private String title;
+
+	@SerializedName("backdrop_path")
 	private String backdropPath;
+
+	@SerializedName("revenue")
 	private int revenue;
+
+	@SerializedName("genres")
 	private List<GenresItem> genres;
+
+	@SerializedName("popularity")
 	private double popularity;
+
+	@SerializedName("production_countries")
 	private List<ProductionCountriesItem> productionCountries;
+
+	@SerializedName("id")
 	private int id;
+
+	@SerializedName("vote_count")
 	private int voteCount;
+
+	@SerializedName("budget")
 	private int budget;
+
+	@SerializedName("overview")
 	private String overview;
+
+	@SerializedName("original_title")
 	private String originalTitle;
+
+	@SerializedName("runtime")
 	private int runtime;
-	private String posterPath;
+
+	@SerializedName("poster_path")
+	private Object posterPath;
+
+	@SerializedName("spoken_languages")
 	private List<SpokenLanguagesItem> spokenLanguages;
+
+	@SerializedName("production_companies")
 	private List<ProductionCompaniesItem> productionCompanies;
+
+	@SerializedName("release_date")
 	private String releaseDate;
+
+	@SerializedName("vote_average")
 	private double voteAverage;
+
+	@SerializedName("belongs_to_collection")
 	private Object belongsToCollection;
+
+	@SerializedName("tagline")
 	private String tagline;
+
+	@SerializedName("adult")
 	private boolean adult;
+
+	@SerializedName("homepage")
 	private String homepage;
+
+	@SerializedName("status")
 	private String status;
 
 	public void setOriginalLanguage(String originalLanguage){
@@ -149,11 +200,11 @@ public class MovieDetailsResponse{
 		return runtime;
 	}
 
-	public void setPosterPath(String posterPath){
+	public void setPosterPath(Object posterPath){
 		this.posterPath = posterPath;
 	}
 
-	public String getPosterPath(){
+	public Object getPosterPath(){
 		return posterPath;
 	}
 
