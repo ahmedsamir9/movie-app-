@@ -1,12 +1,13 @@
 package com.example.movieapp.WebServices;
 
+import com.example.movieapp.Models.ActorDetailsResponse;
+import com.example.movieapp.Models.ActorMoviesResposns;
 import com.example.movieapp.Models.MovieCrewResponse;
 import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.Models.MovieVideoResponse;
 import com.example.movieapp.Models.MoviesResponse;
 
 import io.reactivex.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -29,9 +30,10 @@ public interface webServices {
     @GET("search/multi")
     Single<MoviesResponse> GetMultiSearch(@Query("api_key")String apikey , @Query("language")String language,@Query("query")String query,@Query("page")int page,@Query("include_adult")boolean include_adult);
     @GET("person/{person_id}")
-    Single<MoviesResponse> GetActorsDetails(@Path("movie_id")String movie_id,@Query("api_key")String apikey , @Query("language")String language);
+    Single<ActorDetailsResponse> GetActorsDetails(@Path("person_id")int actor_id, @Query("api_key")String apikey , @Query("language")String language);
     @GET("person/{person_id}/movie_credits")
-    Single<MoviesResponse> GetMoviesOfActors(@Path("movie_id")String movie_id,@Query("api_key")String apikey , @Query("language")String language);
+    Single<ActorMoviesResposns> GetMoviesOfActors(@Path("person_id")int actor_id, @Query("api_key")String apikey , @Query("language")String language);
+
 
 }
 

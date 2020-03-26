@@ -39,6 +39,8 @@ dependencies {
     //implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    //progress bars
+    implementation'com.wang.avi:library:2.1.3'
     // round image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.jackandphantom.android:circularimageview:1.2.0'
@@ -65,4 +67,5 @@ dependencies {
     implementation 'com.jackandphantom.android:circularimageview:1.2.0'
     //image slider
     implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+
 }
