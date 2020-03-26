@@ -1,25 +1,29 @@
 package com.example.movieapp.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movieapp.Adapters.ActorsMoveAdapter;
 import com.example.movieapp.Models.CastItem;
 import com.example.movieapp.Models.GenresItem;
 import com.example.movieapp.Models.MovieDetailsResponse;
-import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
+import com.example.movieapp.UI.actor.Actor_screen;
 import com.example.movieapp.WebServices.MoviesViewModel;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
@@ -33,7 +37,7 @@ public class MovieDetails extends AppCompatActivity {
     TextView tv_movie_Details_title, tv_movie_Details_ratecount, tv_movie_Details_rate, tv_movie_Details_type, tv_movie_Details_story;
     ActorsMoveAdapter actorsMoveAdapter;
     int id;
-
+    private AVLoadingIndicatorView progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +48,11 @@ public class MovieDetails extends AppCompatActivity {
         tv_movie_Details_rate = findViewById(R.id.tv_movie_Details_rate);
         tv_movie_Details_type = findViewById(R.id.tv_movie_Details_type);
         tv_movie_Details_story = findViewById(R.id.tv_movie_Details_story);
+        progress = findViewById(R.id.progressbardetails);
+        progress.show();
         id = getIntent().getExtras().getInt("id");
         initViews();
+
         getLiveData();
     }
 
@@ -57,6 +64,7 @@ public class MovieDetails extends AppCompatActivity {
     private void initRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
+
     }
 
     private void getLiveData() {
@@ -73,6 +81,7 @@ public class MovieDetails extends AppCompatActivity {
             public void onChanged(MovieDetailsResponse movieDetailsResponse) {
                 Log.d("here","current : "+movieDetailsResponse.getTitle());
                 fillData(movieDetailsResponse);
+                progress.hide();
             }
         });
 
@@ -88,6 +97,14 @@ public class MovieDetails extends AppCompatActivity {
             @Override
             public void onChanged(List<CastItem> castItems) {
                 actorsMoveAdapter = new ActorsMoveAdapter(castItems,MovieDetails.this);
+                actorsMoveAdapter.setOnClickmovie(new ActorsMoveAdapter.OnClickLisnterr() {
+                    @Override
+                    public void onClickOnMovie(CastItem Actor) {
+                        Intent intent = new Intent(MovieDetails.this, Actor_screen.class);
+                        intent.putExtra("A-id",Actor.getId());
+                        startActivity(intent);
+                    }
+                });
                 rv_movie_Details_actors.setAdapter(actorsMoveAdapter);
             }
         });
@@ -109,5 +126,15 @@ public class MovieDetails extends AppCompatActivity {
                 .load(IMAGEBASEURL+movieDetailsResponse.getPosterPath())
                 .into(tv_movie_Details_img);
 
+    }
+    public static void watchYoutubeVideo(Context context, String id){
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try {
+            context.startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            context.startActivity(webIntent);
+        }
     }
 }
