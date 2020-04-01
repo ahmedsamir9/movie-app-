@@ -1,8 +1,7 @@
 package com.example.movieapp.Models;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class KnownForItem{
 
@@ -22,7 +21,7 @@ public class KnownForItem{
 	private String title;
 
 	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
+	private List<Object> genreIds;
 
 	@SerializedName("poster_path")
 	private String posterPath;
@@ -91,11 +90,11 @@ public class KnownForItem{
 		return title;
 	}
 
-	public void setGenreIds(List<Integer> genreIds){
+	public void setGenreIds(List<Object> genreIds){
 		this.genreIds = genreIds;
 	}
 
-	public List<Integer> getGenreIds(){
+	public List<Object> getGenreIds(){
 		return genreIds;
 	}
 

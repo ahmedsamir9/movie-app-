@@ -1,4 +1,4 @@
-package com.example.movieapp.WebServices;
+package com.example.movieapp.UI.Movie;
 
 import android.util.Log;
 
@@ -9,7 +9,13 @@ import com.example.movieapp.Models.CastItem;
 import com.example.movieapp.Models.MovieCrewResponse;
 import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.Models.MoviesResponse;
+import com.example.movieapp.Models.ResultSearchItem;
+import com.example.movieapp.Models.ResultsActorItem;
 import com.example.movieapp.Models.ResultsMovieItem;
+import com.example.movieapp.Models.SearchActorsResponse;
+import com.example.movieapp.Models.SearchMovieResponse;
+import com.example.movieapp.Models.SearchResponse;
+import com.example.movieapp.WebServices.ApiManger;
 
 import java.util.List;
 
@@ -27,6 +33,17 @@ public class MoviesViewModel extends ViewModel {
     private MutableLiveData<List<ResultsMovieItem>> upComingMoviesMutableLiveData=new MutableLiveData<>();
     private MutableLiveData <MovieDetailsResponse> movieDetailsResponseMutableLiveData=new MutableLiveData<>();
     private MutableLiveData<List<CastItem>> actorsMovieMutableLiveData=new MutableLiveData<>();
+    private MutableLiveData<List<ResultsMovieItem>> searchMoviesLiveData=new MutableLiveData<>();
+    public MutableLiveData<List<ResultsMovieItem>> getSearchMoviesLiveData() {
+        return searchMoviesLiveData;
+    }
+
+    public void setSearchMoviesLiveData(MutableLiveData<List<ResultsMovieItem>> searchMoviesLiveData) {
+        this.searchMoviesLiveData = searchMoviesLiveData;
+    }
+
+
+
 
 
     public MutableLiveData<List<CastItem>> getActorsMovieMutableLiveData() {
@@ -114,5 +131,12 @@ public class MoviesViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> actorsMovieMutableLiveData.setValue(o.getCast()), e-> Log.d("MoviesDetailsViewModel","here :"+e));
+    }
+
+    public void getSearchMovies(String s){
+        Single<SearchMovieResponse> observable = ApiManger.getApis().GetSearchMovies(APIKEY,LANGUAGE,s,1,false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> searchMoviesLiveData.setValue(o.getResults()), e-> Log.d("MoviesDetailsViewModel","here :"+e));
     }
 }

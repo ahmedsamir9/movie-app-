@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#414c50</color>
+    <color name="colorPrimaryDark">#414c50</color>
+    <color name="colorAccent">#BF0000</color>
 
 
 
@@ -36,7 +36,6 @@
     <color name="orange_bg_light">#fff3e0</color>
     <color name="grey_bg_light">#fafafa</color>
 
-    <color name="white">#ffffff</color>
 
 
 
@@ -53,10 +52,48 @@
 
 
     <!--colors for light mode-->
+
+
+    <color name="off_white">#FCFBF6</color>
+
+    <color name="black">#000000</color>
+
+
+    <!--colors for light mode-->
     <color name="contentTextColor">#020000</color>
     <color name="register_bk_color">#11CFC5</color>
     <color name="login_bk_color">#fff</color>
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#11CFC5</color>
+
+
+    <color name="brown1">#5f3d2a</color>
+    <color name="brown2">#765847</color>
+    <color name="brown3">#897061</color>
+
+
+
+
+    <color name="red1">#ff4d4d</color>
+    <color name="red2">#ff3333</color>
+    <color name="red3">#ff1a1a</color>
+
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="gray">#6b6b47</color>
+    <color name="white">#fafafa</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#B81217</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+
+
+    <color name="dark_black2">#192428</color>
+    <color name="dark_black1">#2d383c</color>
+    <color name="dark_black3">#414c50</color>
+    <color name="dark_blue1">#800000</color>
+    <color name="dark_blue2">#400000</color>
 
 </resources>

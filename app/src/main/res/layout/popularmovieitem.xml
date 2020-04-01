@@ -14,10 +14,9 @@
         android:layout_height="195dp"
         android:src="@color/cardview_dark_background"
 
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rounded_radius="200" />
+        app:rounded_radius="70" />
 
 
 

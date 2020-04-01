@@ -1,5 +1,6 @@
-package com.example.movieapp.UI;
+package com.example.movieapp.UI.Movie;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,8 +23,6 @@ import com.example.movieapp.Models.GenresItem;
 import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.R;
 import com.example.movieapp.UI.actor.Actor_screen;
-import com.example.movieapp.WebServices.MoviesViewModel;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.List;
 
@@ -34,29 +33,33 @@ public class MovieDetails extends AppCompatActivity {
     MoviesViewModel movieViewModel;
     RecyclerView rv_movie_Details_actors;
     ImageView tv_movie_Details_img;
-    TextView tv_movie_Details_title, tv_movie_Details_ratecount, tv_movie_Details_rate, tv_movie_Details_type, tv_movie_Details_story;
+    ProgressDialog dialog;
+    TextView tv_movie_Details_title,tv_movie_name, tv_movie_Details_rate_count, tv_movie_Details_rate, tv_movie_Details_type, tv_movie_Details_story;
     ActorsMoveAdapter actorsMoveAdapter;
     int id;
-    private AVLoadingIndicatorView progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-        tv_movie_Details_img = findViewById(R.id.tv_movie_Details_img);
-        tv_movie_Details_title = findViewById(R.id.tv_movie_Details_title);
-        tv_movie_Details_ratecount = findViewById(R.id.tv_movie_Details_ratecount);
-        tv_movie_Details_rate = findViewById(R.id.tv_movie_Details_rate);
-        tv_movie_Details_type = findViewById(R.id.tv_movie_Details_type);
-        tv_movie_Details_story = findViewById(R.id.tv_movie_Details_story);
-        progress = findViewById(R.id.progressbardetails);
-        progress.show();
-        id = getIntent().getExtras().getInt("id");
         initViews();
-
         getLiveData();
     }
 
     private void initViews() {
+        dialog=new ProgressDialog(this);
+        dialog.show();
+        dialog.setContentView(R.layout.test);
+        dialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
+        tv_movie_name = findViewById(R.id.tv_movie_name);
+        tv_movie_Details_img = findViewById(R.id.tv_movie_Details_img);
+        tv_movie_Details_title = findViewById(R.id.tv_movie_Details_title);
+        tv_movie_Details_rate_count = findViewById(R.id.tv_movie_Details_ratecount);
+        tv_movie_Details_rate = findViewById(R.id.tv_movie_Details_rate);
+        tv_movie_Details_type = findViewById(R.id.tv_movie_Details_type);
+        tv_movie_Details_story = findViewById(R.id.tv_movie_Details_story);
+        id = getIntent().getExtras().getInt("id");
         rv_movie_Details_actors = findViewById(R.id.rv_movie_Details_actors);
         initRecyclerView(rv_movie_Details_actors);
     }
@@ -68,7 +71,7 @@ public class MovieDetails extends AppCompatActivity {
     }
 
     private void getLiveData() {
-        movieViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        movieViewModel =new  ViewModelProvider(this).get(MoviesViewModel.class);
         movieViewModel.getMovieDetails(id);
         observeMovieDetailsData();
         movieViewModel.getActorsMovie(id);
@@ -81,7 +84,7 @@ public class MovieDetails extends AppCompatActivity {
             public void onChanged(MovieDetailsResponse movieDetailsResponse) {
                 Log.d("here","current : "+movieDetailsResponse.getTitle());
                 fillData(movieDetailsResponse);
-                progress.hide();
+                dialog.dismiss();
             }
         });
 
@@ -114,18 +117,26 @@ public class MovieDetails extends AppCompatActivity {
 
         tv_movie_Details_rate.setText(String.valueOf(movieDetailsResponse.getVoteAverage()));
         tv_movie_Details_title.setText(movieDetailsResponse.getTitle());
+        tv_movie_name.setText(movieDetailsResponse.getTitle());
         tv_movie_Details_story.setText(movieDetailsResponse.getOverview());
-        tv_movie_Details_ratecount.setText(String.valueOf(movieDetailsResponse.getVoteCount()));
+        tv_movie_Details_rate_count.setText(String.valueOf(movieDetailsResponse.getVoteCount()));
         if (movieDetailsResponse.getGenres() != null) {
             String type = "";
             for (GenresItem item : movieDetailsResponse.getGenres())
-                type += item.getName() + " ,";
+                type += item.getName() + " ";
             tv_movie_Details_type.setText(type);
         }
-        Glide.with(this)
-                .load(IMAGEBASEURL+movieDetailsResponse.getPosterPath())
-                .into(tv_movie_Details_img);
+        if(movieDetailsResponse.getPosterPath()!=null)
+            Glide.with(this)
+                    .load(IMAGEBASEURL+movieDetailsResponse.getPosterPath())
+                    .into(tv_movie_Details_img);
 
+        else if(movieDetailsResponse.getBackdropPath()!=null)
+            Glide.with(this)
+                    .load(IMAGEBASEURL+movieDetailsResponse.getBackdropPath())
+                    .into(tv_movie_Details_img);
+
+        else   tv_movie_Details_img.setImageDrawable(getResources().getDrawable(R.drawable.movie));
     }
     public static void watchYoutubeVideo(Context context, String id){
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
