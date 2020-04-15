@@ -1,9 +1,7 @@
 package com.example.movieapp.Models;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
-
+import com.google.gson.annotations.SerializedName;
 
 public class ResultsMovieItem{
 
@@ -162,23 +160,23 @@ public class ResultsMovieItem{
 	}
 
 	@Override
- 	public String toString(){
+	public String toString(){
 		return
-			"ResultsItem{" +
-			"overview = '" + overview + '\'' +
-			",original_language = '" + originalLanguage + '\'' +
-			",original_title = '" + originalTitle + '\'' +
-			",video = '" + video + '\'' +
-			",title = '" + title + '\'' +
-			",genre_ids = '" + genreIds + '\'' +
-			",poster_path = '" + posterPath + '\'' +
-			",backdrop_path = '" + backdropPath + '\'' +
-			",release_date = '" + releaseDate + '\'' +
-			",popularity = '" + popularity + '\'' +
-			",vote_average = '" + voteAverage + '\'' +
-			",id = '" + id + '\'' +
-			",adult = '" + adult + '\'' +
-			",vote_count = '" + voteCount + '\'' +
-			"}";
-		}
+				"ResultsItem{" +
+						"overview = '" + overview + '\'' +
+						",original_language = '" + originalLanguage + '\'' +
+						",original_title = '" + originalTitle + '\'' +
+						",video = '" + video + '\'' +
+						",title = '" + title + '\'' +
+						",genre_ids = '" + genreIds + '\'' +
+						",poster_path = '" + posterPath + '\'' +
+						",backdrop_path = '" + backdropPath + '\'' +
+						",release_date = '" + releaseDate + '\'' +
+						",popularity = '" + popularity + '\'' +
+						",vote_average = '" + voteAverage + '\'' +
+						",id = '" + id + '\'' +
+						",adult = '" + adult + '\'' +
+						",vote_count = '" + voteCount + '\'' +
+						"}";
+	}
 }

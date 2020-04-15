@@ -13,7 +13,7 @@ public class ActorMovieCreditsResponse{
 	private int id;
 
 	@SerializedName("crew")
-	private List<CrewItem> crew;
+	private List <CrewItemMoviee>crew;
 
 	public void setCast(List<CastActorItem> cast){
 		this.cast = cast;
@@ -31,11 +31,11 @@ public class ActorMovieCreditsResponse{
 		return id;
 	}
 
-	public void setCrew(List<CrewItem> crew){
+	public void setCrew(List<CrewItemMoviee> crew){
 		this.crew = crew;
 	}
 
-	public List<CrewItem> getCrew(){
+	public List<CrewItemMoviee> getCrew(){
 		return crew;
 	}
 

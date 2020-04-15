@@ -1,17 +1,19 @@
 package com.example.movieapp.WebServices;
 
 import com.example.movieapp.Models.ActorDetailsResponse;
-import com.example.movieapp.Models.ActorMoviesResposns;
+import com.example.movieapp.Models.ActorMovieCreditsResponse;
 import com.example.movieapp.Models.MovieCrewResponse;
 import com.example.movieapp.Models.MovieDetailsResponse;
 import com.example.movieapp.Models.MovieVideoResponse;
 import com.example.movieapp.Models.MoviesResponse;
+import com.example.movieapp.Models.SearchActorsResponse;
+import com.example.movieapp.Models.SearchMovieResponse;
+import com.example.movieapp.Models.SearchResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
 public interface webServices {
     @GET("movie/{movie_id}")
     Single<MovieDetailsResponse> GetMovieDetails(@Path("movie_id")int movie_id, @Query("api_key")String apikey , @Query("language")String language);
@@ -28,12 +30,15 @@ public interface webServices {
     @GET("movie/upcoming")
     Single<MoviesResponse> GetUpComingMovies(@Query("api_key")String apikey , @Query("language")String language,@Query("page")int page);
     @GET("search/multi")
-    Single<MoviesResponse> GetMultiSearch(@Query("api_key")String apikey , @Query("language")String language,@Query("query")String query,@Query("page")int page,@Query("include_adult")boolean include_adult);
+    Single<SearchResponse> GetMultiSearch(@Query("api_key")String apikey , @Query("language")String language, @Query("query")String query, @Query("page")int page, @Query("include_adult")boolean include_adult);
     @GET("person/{person_id}")
     Single<ActorDetailsResponse> GetActorsDetails(@Path("person_id")int actor_id, @Query("api_key")String apikey , @Query("language")String language);
     @GET("person/{person_id}/movie_credits")
-    Single<ActorMoviesResposns> GetMoviesOfActors(@Path("person_id")int actor_id, @Query("api_key")String apikey , @Query("language")String language);
-
+    Single<ActorMovieCreditsResponse> GetMoviesOfActors(@Path("person_id")int actor_id, @Query("api_key")String apikey , @Query("language")String language);
+    @GET("search/movie")
+    Single<SearchMovieResponse> GetSearchMovies(@Query("api_key")String apikey , @Query("language")String language, @Query("query")String query, @Query("page")int page, @Query("include_adult")boolean include_adult);
+    @GET("search/person")
+    Single<SearchActorsResponse> GetSearchActors(@Query("api_key")String apikey , @Query("language")String language, @Query("query")String query, @Query("page")int page, @Query("include_adult")boolean include_adult);
 
 }
 

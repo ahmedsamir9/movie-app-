@@ -40,9 +40,13 @@ public class ActorsMoveAdapter extends RecyclerView.Adapter<ActorsMoveAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CastItem item = data.get(position);
         holder.tv_actor_card.setText(item.getName());
-        Glide.with(holder.itemView)
-                .load(IMAGEBASEURL+item.getProfilePath())
-                .into(holder.img_actor_card);
+        if(item.getProfilePath()!=null)
+            Glide.with(holder.itemView)
+                    .load(IMAGEBASEURL+item.getProfilePath())
+                    .into(holder.img_actor_card);
+        else
+        holder.img_actor_card.setImageDrawable(context.getResources().getDrawable(R.drawable.actor));
+
         holder.img_actor_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

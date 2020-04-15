@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
-import com.example.movieapp.UI.MovieDetails;
-import com.jackandphantom.circularimageview.CircleImage;
+import com.example.movieapp.UI.Movie.MovieDetails;
 import com.jackandphantom.circularimageview.RoundedImage;
 
 import java.util.List;
@@ -43,9 +41,17 @@ public class MoviesPlayingNowAdapter extends RecyclerView.Adapter<MoviesPlayingN
         ResultsMovieItem item = data.get(position);
         holder.tv_title.setText(item.getTitle());
         holder.tv_desc.setText(String.valueOf(item.getVoteAverage()));
+        if(item.getPosterPath()!=null)
         Glide.with(holder.itemView)
                 .load(IMAGEBASEURL+item.getPosterPath())
                 .into(holder.img_movie);
+        else if(item.getBackdropPath()!=null)
+
+        Glide.with(holder.itemView)
+                .load(IMAGEBASEURL+item.getBackdropPath())
+                .into(holder.img_movie);
+        else   holder.img_movie.setImageDrawable(context.getResources().getDrawable(R.drawable.movie));
+
         holder.img_movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

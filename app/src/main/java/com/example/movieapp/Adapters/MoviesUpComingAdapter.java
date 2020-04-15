@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movieapp.Models.ResultsMovieItem;
 import com.example.movieapp.R;
-import com.example.movieapp.UI.MovieDetails;
-import com.jackandphantom.circularimageview.CircleImage;
+import com.example.movieapp.UI.Movie.MovieDetails;
 import com.jackandphantom.circularimageview.RoundedImage;
 
 import java.util.List;

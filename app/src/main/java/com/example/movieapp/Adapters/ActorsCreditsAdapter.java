@@ -1,5 +1,6 @@
 package com.example.movieapp.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,11 @@ public class ActorsCreditsAdapter extends RecyclerView.Adapter<ActorsCreditsAdap
 
     private List<CrewItemMoviee> data;
 
-
+Context context;
     private OnClickLisnterr onClickmovie;
-    public ActorsCreditsAdapter(List<CrewItemMoviee> data) {
+    public ActorsCreditsAdapter(List<CrewItemMoviee> data, Context context) {
         this.data = data;
+        this.context=context;
     }
 
     public void setOnClickmovie(OnClickLisnterr onClickmovie) {
@@ -42,9 +44,17 @@ public class ActorsCreditsAdapter extends RecyclerView.Adapter<ActorsCreditsAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
        CrewItemMoviee item = data.get(position);
         holder.tv_title.setText(item.getTitle());
-        Glide.with(holder.itemView)
-                .load(IMAGEBASEURL+item.getPosterPath())
-                .into(holder.img_movie);
+        if(item.getPosterPath()!=null)
+            Glide.with(holder.itemView)
+                    .load(IMAGEBASEURL+item.getPosterPath())
+                    .into(holder.img_movie);
+        else if(item.getBackdropPath()!=null)
+
+            Glide.with(holder.itemView)
+                    .load(IMAGEBASEURL+item.getBackdropPath())
+                    .into(holder.img_movie);
+        else   holder.img_movie.setImageDrawable(context.getResources().getDrawable(R.drawable.movie));
+
         holder.tv_desc.setText(String.valueOf(item.getVoteAverage()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
